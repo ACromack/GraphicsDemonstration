@@ -1,0 +1,3 @@
+C:/Users/Ashley/Documents/GitHub/GraphicsDemonstration/GraphicsCode/bin/CMakeFiles/lab1.dir
+C:/Users/Ashley/Documents/GitHub/GraphicsDemonstration/GraphicsCode/bin/CMakeFiles/ALL_BUILD.dir
+C:/Users/Ashley/Documents/GitHub/GraphicsDemonstration/GraphicsCode/bin/CMakeFiles/ZERO_CHECK.dir
