@@ -91,6 +91,8 @@ bool initOGL(void)
 	// Give our vertices to OpenGL.
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
 
+	programID = LoadShaders("content/default.vert", "content/default.frag");
+
 	return true;
 }
 
@@ -155,9 +157,12 @@ void update(void)
 {
 	//Clear the background to the desired colour
 	glClearColor(bgColour[0], bgColour[1], bgColour[2], 1);
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	// 1rst attribute buffer : vertices
+	// Use our shader
+	glUseProgram(programID);
+
+	// 1st attribute buffer : vertices
 	glEnableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
 	glVertexAttribPointer(

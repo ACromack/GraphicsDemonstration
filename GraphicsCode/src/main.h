@@ -21,6 +21,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "loadShader.h"
+
 // Background colour for the window
 glm::vec3 bgColour = glm::vec3(1.0, 0.0, 0.0);
 
@@ -45,3 +47,6 @@ static const GLfloat g_vertex_buffer_data[] = {
 GLuint vertexbuffer;
 
 GLuint VertexArrayID;
+
+// Create and compile our GLSL program from the shaders
+GLuint programID;
