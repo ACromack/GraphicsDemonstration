@@ -80,18 +80,23 @@ bool initOGL(void)
 
 	std::cout << "OpenGL version is " << glGetString(GL_VERSION) << std::endl;
 
-	// Create a vertex array object and set it as the current one
-	glGenVertexArrays(1, &VertexArrayID);
-	glBindVertexArray(VertexArrayID);
+	//// Create a vertex array object and set it as the current one
+	//glGenVertexArrays(1, &VertexArrayID);
+	//glBindVertexArray(VertexArrayID);
 
-	// Generate 1 buffer, put the resulting identifier in vertexbuffer
-	glGenBuffers(1, &vertexbuffer);
-	// The following commands will talk about our 'vertexbuffer' buffer
-	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-	// Give our vertices to OpenGL.
-	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
+	//// Generate 1 buffer, put the resulting identifier in vertexbuffer
+	//glGenBuffers(1, &vertexbuffer);
+	//// The following commands will talk about our 'vertexbuffer' buffer
+	//glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+	//// Give our vertices to OpenGL.
+	//glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
 
+	// Load in the shaders to programID
 	programID = LoadShaders("content/default.vert", "content/default.frag");
+
+	// Get a handle for the MVP uniform in the shaders
+	MatrixID = glGetUniformLocation(programID, "MVP");
+
 
 	return true;
 }
@@ -162,17 +167,29 @@ void update(void)
 	// Use our shader
 	glUseProgram(programID);
 
-	// 1st attribute buffer : vertices
-	glEnableVertexAttribArray(0);
-	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-	glVertexAttribPointer(
-		0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
-		3,                  // size
-		GL_FLOAT,           // type
-		GL_FALSE,           // normalized?
-		0,                  // stride
-		(void*)0            // array buffer offset
-	);
+	rot = rot + 0.01f;
+	Model = glm::rotate(Model, rot, glm::vec3(0, 0, 1));
+	MVP = Projection * View * Model;
+
+	glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
+
+	//// 1st attribute buffer : vertices
+	//glEnableVertexAttribArray(0);
+	//glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+	//glVertexAttribPointer(
+	//	0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
+	//	3,                  // size
+	//	GL_FLOAT,           // type
+	//	GL_FALSE,           // normalized?
+	//	0,                  // stride
+	//	(void*)0            // array buffer offset
+	//);
+
+	// Set buffers for the triangle
+	tri.setBuffers();
+
+	glBindVertexArray(tri.VAO);
+
 	// Draw the triangle !
 	glDrawArrays(GL_TRIANGLES, 0, 3); // Starting from vertex 0; 3 vertices total -> 1 triangle
 	glDisableVertexAttribArray(0);
@@ -186,6 +203,11 @@ void cleanUp(void)
 {
 	// Clean up
 	SDL_Log("Finished. Cleaning up and closing down\n");
+
+	// Cleanup VBO and shader
+	glDeleteBuffers(1, &vertexbuffer);
+	glDeleteProgram(programID);
+	glDeleteVertexArrays(1, &VertexArrayID);
 
 	// Once finished with OpenGL functions, the SDL_GLContext can be deleted.
 	SDL_GL_DeleteContext(glcontext);
