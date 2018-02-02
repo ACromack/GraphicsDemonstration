@@ -16,9 +16,9 @@ public:
 
 	//define vertices for the triangle
 	GLfloat vertices[9] = {
-		-0.25f, -0.25f, 0.0f,
-		0.25f, -0.25f, 0.0f,
-		0.0f,  0.25f, 0.0f,
+		-0.25f, -0.25f,  0.0f,
+		 0.25f, -0.25f,  0.0f,
+		 0.0f,   0.25f,  0.0f,
 	};
 	 
 	

@@ -170,7 +170,7 @@ void update(void)
 	glUseProgram(programID);
 
 	rot = rot + 0.0001f;
-	Model = glm::rotate(Model, rot, glm::vec3(0, 1, 0));
+	Model = glm::rotate(Model, 0.001f, glm::vec3(0, 0, 1));
 	MVP = Projection * View * Model;
 
 	glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
