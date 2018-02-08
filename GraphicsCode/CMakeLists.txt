@@ -1,5 +1,5 @@
 #Set the project name
-project(lab1)
+project(GraphicsDemonstration)
 
 #Set the CMake version
 cmake_minimum_required(VERSION 3.0)
@@ -13,14 +13,14 @@ file(GLOB header_files "src/*.h" "src/*.hpp")
 file(GLOB src_files "src/*.c" "src/*.cpp")
 
 #Make a project, link in libraries from conan
-ADD_EXECUTABLE(lab1 ${header_files} ${src_files})
-TARGET_LINK_LIBRARIES(lab1 ${CONAN_LIBS})
+ADD_EXECUTABLE(GraphicsDemonstration ${header_files} ${src_files})
+TARGET_LINK_LIBRARIES(GraphicsDemonstration ${CONAN_LIBS})
 
 #Set the C++ version
 set (CMAKE_CXX_STANDARD 11)
 
 #Set the project for VS to use.
-set_property(DIRECTORY PROPERTY VS_STARTUP_PROJECT "lab1")
+set_property(DIRECTORY PROPERTY VS_STARTUP_PROJECT "GraphicsDemonstration")
 
 #Copy the content folder to the /build for VS to be able to find them.
 FILE(COPY content/ DESTINATION content)
@@ -32,4 +32,4 @@ FILE(COPY content/ DESTINATION bin/content)
 FILE(COPY "pre_build_Script.bat" DESTINATION .)
 
 #Perform prebuild
-add_custom_command(TARGET lab1 PRE_BUILD COMMAND "pre_build_Script.bat")
+add_custom_command(TARGET GraphicsDemonstration PRE_BUILD COMMAND "pre_build_Script.bat")
