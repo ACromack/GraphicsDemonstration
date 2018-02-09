@@ -22,7 +22,10 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "loadShader.h"
+#include "ShaderClass.h"
 #include "Triangle.h"
+#include "Square.h"
+#include "Circle.h"
 
 // Background colour for the window
 glm::vec3 bgColour = glm::vec3(1.0, 0.0, 0.0);
@@ -74,5 +77,9 @@ glm::mat4 MVP = Projection * View * Model;
 
 // Create a triangle object
 Triangle tri;
+Square sqr1;
+Circle circ(0.3f);
 
 float rot = 0.0f;
+
+GLuint shaderProgram_colour;

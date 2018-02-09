@@ -15,7 +15,7 @@ public:
 	GLuint EBO;
 
 	//set up vertex array
-	GLfloat vertices[90];
+	GLfloat vertices[180];
 	//set up index array
 	GLuint indices[87] = {
 		0, 1, 2,
@@ -54,15 +54,21 @@ public:
 		vertices[0] = 0.0f;
 		vertices[1] = 0.0f;
 		vertices[2] = 0.0f;
+		vertices[3] = 0.0f;
+		vertices[4] = 0.0f;
+		vertices[5] = 1.0f;
 
 		GLfloat angle = 0.0f;
 
 		//set remaining vertices based on radius
-		for (int i = 3; i < 90; i+=3)
+		for (int i = 6; i < 180; i+=6)
 		{
 			vertices[i] = radius * cos(angle);
 			vertices[i+1] = radius * sin(angle);
 			vertices[i+2] = 0.0f;
+			vertices[i + 3] = 0.0f;
+			vertices[i + 4] = 0.0f;
+			vertices[i + 5] = 0.0f;
 			//increase angle value in radians
 			//(2*pi)/number of verts on circumference
 			angle += (2*3.141)/28.0f;
@@ -90,8 +96,11 @@ public:
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 		// Then set our vertex attributes pointers
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (GLvoid*)0);
 		glEnableVertexAttribArray(0);
+		//set the colour attribute pointer
+		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
+		glEnableVertexAttribArray(1);
 		//Unbind the VAO
 		glBindVertexArray(0);
 	}

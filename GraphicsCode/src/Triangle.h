@@ -49,4 +49,14 @@ public:
 		//Unbind the VAO
 		glBindVertexArray(0);
 	}
+
+	void render()
+	{
+		//draw the triangle
+		glBindVertexArray(VAO);
+
+		// Draw the triangle !
+		glDrawArrays(GL_TRIANGLES, 0, 3); // Starting from vertex 0; 3 vertices total -> 1 triangle
+		glBindVertexArray(0);
+	}
 };
