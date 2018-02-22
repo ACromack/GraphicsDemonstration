@@ -66,9 +66,9 @@ public:
 			vertices[i] = radius * cos(angle);
 			vertices[i+1] = radius * sin(angle);
 			vertices[i+2] = 0.0f;
-			vertices[i + 3] = 0.0f;
-			vertices[i + 4] = 0.0f;
-			vertices[i + 5] = 0.0f;
+			vertices[i + 3] = 1.0f;
+			vertices[i + 4] = 1.0f;
+			vertices[i + 5] = 1.0f;
 			//increase angle value in radians
 			//(2*pi)/number of verts on circumference
 			angle += (2*3.141)/28.0f;

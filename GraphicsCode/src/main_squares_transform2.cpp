@@ -58,14 +58,14 @@ int main(int argc, char *argv[]) {
 
 	//create texture
 	Texture brick1;
-	brick1.load("..//src//bricks.png");
+	brick1.load("..//content//bricks.png");
 	//set buffers for texture
 	brick1.setBuffers();
 	
 
 	//create shaders
-	Shader vSh("..//src//shader_vColour_Transform.vert");
-	Shader fSh("..//src//shader_vColour_Transform.frag");
+	Shader vSh("..//content//shader_vColour_Transform.vert");
+	Shader fSh("..//content//shader_vColour_Transform.frag");
 
 	//OpenGL specific values
 	//****************************
@@ -150,6 +150,14 @@ int main(int argc, char *argv[]) {
 			{
 				switch (event.key.keysym.sym)
 				{
+				case SDLK_ESCAPE:
+					windowOpen = false;
+					break;
+
+				case SDLK_SPACE:
+					mRotate = glm::rotate(mRotate, glm::radians(0.5f), glm::vec3(0, 1, 0));
+					break;
+
 				case SDLK_LEFT:
 					mTranslate = glm::translate(mTranslate, glm::vec3(-0.01f, 0.0f, 0.0f));
 					break;

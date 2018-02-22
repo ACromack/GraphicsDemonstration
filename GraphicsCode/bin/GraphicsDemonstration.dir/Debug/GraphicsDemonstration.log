@@ -1,5 +1,6 @@
-﻿  6 File(s) copied
-  6 File(s) copied
-  main_SDL-OGL-1.cpp
-c:\users\ashley\documents\github\graphicsdemonstration\graphicscode\src\Circle.h(74): warning C4305: '+=': truncation from 'double' to 'GLfloat'
+﻿  9 File(s) copied
+  9 File(s) copied
+     Creating library C:/Users/Ashley/Documents/GitHub/GraphicsDemonstration/GraphicsCode/bin/lib/GraphicsDemonstration.lib and object C:/Users/Ashley/Documents/GitHub/GraphicsDemonstration/GraphicsCode/bin/lib/GraphicsDemonstration.exp
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+glew32s.lib(glew.obj) : warning LNK4099: PDB 'glew_static.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Users\Ashley\Documents\GitHub\GraphicsDemonstration\GraphicsCode\bin\bin\glew_static.pdb'; linking object as if no debug info
   GraphicsDemonstration.vcxproj -> C:\Users\Ashley\Documents\GitHub\GraphicsDemonstration\GraphicsCode\bin\bin\GraphicsDemonstration.exe
